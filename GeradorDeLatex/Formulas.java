@@ -1,31 +1,43 @@
+import out.production.GeradorDeLatex.Dados;
+
 import java.util.ArrayList;
 
 public class Formulas {
+
     public Formulas(){
 
     }
-    public double calcMedia(ArrayList<Double> valores) {
+
+
+    public void calcMedia(Dados experimento) {
         double media = 0;
+        ArrayList<Double> valores = experimento.getValores();
         for (int i = 0; i < valores.size(); i++) {
             media += valores.get(i);
         }
-        return media / valores.size();
+        experimento.setMedia(media/valores.size());
+
     }
 
-    public double calcDesvio(ArrayList<Double> valores){
-        double media = calcMedia(valores);
+    public void calcDesvio(Dados experimento){
+        ArrayList<Double> valores = experimento.getValores();
+        double media = experimento.getMedia();
         double soma = 0;
+        double desvio = 0;
         for (int i = 0; i < valores.size(); i++){
             soma += Math.pow(valores.get(i) - media, 2);
         }
-        return (float) Math.sqrt(soma / (valores.size() - 1));
+        desvio = (float) Math.sqrt(soma / (valores.size() - 1));
+        experimento.setDesvio(desvio);
+
     }
-    public double calcIncertezaA(ArrayList<Double> valores){
-        double desvio = calcDesvio(valores);
-        return desvio/Math.sqrt(valores.size());
+    public void calcIncertezaA(Dados experimento){
+        ArrayList<Double> valores = experimento.getValores();
+        double desvio = experimento.getDesvio();
+        experimento.setIncertezaA(desvio/Math.sqrt(valores.size()));
     }
-    public double calcIncertezaC(ArrayList<Double> valores, double incertezaB){
-        return Math.sqrt(Math.pow(calcIncertezaA(valores),2) + Math.pow(incertezaB,2));
+    public void calcIncertezaC(Dados experimento){
+        experimento.setIncertezaC(Math.sqrt(Math.pow(experimento.getIncertezaA(), 2) + Math.pow(experimento.getIncertezaB(), 2)));
     }
 }
 
