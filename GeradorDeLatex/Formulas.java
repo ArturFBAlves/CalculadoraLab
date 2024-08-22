@@ -1,5 +1,3 @@
-import out.production.GeradorDeLatex.Dados;
-
 import java.util.ArrayList;
 
 public class Formulas {

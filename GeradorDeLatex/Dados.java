@@ -1,5 +1,3 @@
-package out.production.GeradorDeLatex;
-
 import java.util.ArrayList;
 
 public class Dados {
