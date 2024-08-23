@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Dados {
     ArrayList valores = new ArrayList<>();
-    String unidade;
+    String unidade = "mm";
     double media;
     double desvio;
     double incertezaA;

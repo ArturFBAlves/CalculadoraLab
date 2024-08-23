@@ -3,7 +3,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import java.io.File;
 public class LeitorBlocoNotas {
 
     public static List<List<Double>> lerBlocoDeNotas(String caminhoArquivo) {
@@ -40,5 +42,29 @@ public class LeitorBlocoNotas {
         }
 
         return listaDeListas;
+    }
+
+
+    public static String abrirSeletorDeDiretorio() {
+        // Cria uma instância de JFileChooser
+        JFileChooser seletor = new JFileChooser();
+
+        // Define o seletor para selecionar apenas diretórios
+        seletor.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        // Abre o diálogo e espera a ação do usuário
+        int resultado = seletor.showOpenDialog(null);
+
+        // Verifica se o usuário clicou no botão "Abrir"
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            // Obtém o arquivo selecionado
+            File diretorioSelecionado = seletor.getSelectedFile();
+
+            // Retorna o caminho do diretório
+            return diretorioSelecionado.getAbsolutePath();
+        }
+
+        // Retorna null se o usuário cancelar a seleção
+        return null;
     }
 }

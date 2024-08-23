@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,12 +12,22 @@ public class Main {
         String resp = "S";
         String unidade;
 
+
+        String caminhoDiretorio = LeitorBlocoNotas.abrirSeletorDeDiretorio();
+
+        // Verifica se o caminho foi obtido e exibe o resultado
+        if (caminhoDiretorio != null) {
+            JOptionPane.showMessageDialog(null, "Diretório selecionado: " + caminhoDiretorio);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum diretório selecionado.");
+        }
+
         // Declaração dos objetos
         ArrayList<Dados> listaDeValores = new ArrayList<>();
         Scanner leitura = new Scanner(System.in);
         Formulas formulas = new Formulas();
         ConversorLatex conversorLatex = new ConversorLatex();
-        List<List<Double>> listas = LeitorBlocoNotas.lerBlocoDeNotas("D:\\Estudos\\UFS\\Lab_Física\\15.txt");
+        List<List<Double>> listas = LeitorBlocoNotas.lerBlocoDeNotas(caminhoDiretorio);
 
         // Processa os valores lidos do arquivo
         for (List<Double> lista : listas) {
@@ -32,7 +43,7 @@ public class Main {
         // Exibe a lista de valores lida do arquivo
         System.out.println(listaDeValores);
 
-        System.out.println("==================");
+        /*System.out.println("==================");
         System.out.println("Digite os valores");
         System.out.println("==================");
 
@@ -67,7 +78,7 @@ public class Main {
         }
 
         System.out.println(listaDeValores);
-
+*/
         while (opcao != 0) {
             System.out.println("Com qual experimento você gostaria de trabalhar: ");
             cont = leitura.nextInt();
