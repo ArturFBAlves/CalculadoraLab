@@ -13,7 +13,7 @@ public class Main {
         String unidade;
 
 
-        String caminhoDiretorio = LeitorBlocoNotas.abrirSeletorDeDiretorio();
+        String caminhoDiretorio = LeitorBlocoNotas.abrirSeletorDeArquivo();
 
         // Verifica se o caminho foi obtido e exibe o resultado
         if (caminhoDiretorio != null) {
@@ -90,7 +90,7 @@ public class Main {
             System.out.println("2 - Desvio Padrão\n");
             System.out.println("3 - Incerteza Tipo A\n");
             System.out.println("4 - Incerteza Tipo C\n");
-
+            System.out.println("5 - Calcular tudo\n");
             opcao = leitura.nextInt();
 
             switch (opcao) {
@@ -107,6 +107,23 @@ public class Main {
                     System.out.println("Digite o valor da incerteza do tipo B:\n");
                     listaDeValores.get(cont).setIncertezaB(leitura.nextDouble());
                     System.out.println(conversorLatex.converterIncertezaC(listaDeValores.get(cont)));
+                    break;
+                case 5:
+                    System.out.println("Digite o valor da incerteza do tipo B:\n");
+                    listaDeValores.get(cont).setIncertezaB(leitura.nextDouble());
+
+                    System.out.println("Media\n");
+                    System.out.println(conversorLatex.converterMedia(listaDeValores.get(cont)));
+                    System.out.println("Desvio Padrão");
+                    System.out.println(conversorLatex.converterDesvio(listaDeValores.get(cont)));
+                    System.out.println("Incerteza tipo A");
+                    System.out.println(conversorLatex.converterIncertezaA(listaDeValores.get(cont)));
+                    System.out.println("Incerteza tipo C");
+                    System.out.println(conversorLatex.converterIncertezaC(listaDeValores.get(cont)));
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
             }
         }
     }
